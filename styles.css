@@ -4,15 +4,16 @@ input[type=text],
 		width: 100%;
 		padding:8px 0px;
 		display: inline-block;
-		border: 1px solid #ccc;
-		border-radius: 5px;
+		border: 1px solid rgb(0, 0, 0);
+		border-radius: 0px;
 		box-sizing: border-box;
-    min-width: 45px;
+    min-width: 20px;
     text-align: center;
+    font-size: 16px;
 	}
 
 	button {
-    background-color: #10a049;
+    background-color: #1053a0;
 		color: white;
 		padding: 8px 2px;
 		margin: 0px;
@@ -23,7 +24,7 @@ input[type=text],
 	}
 
 	button:hover {
-    background: #37c971;
+    background: #5e9add;
     font-weight: bold;
 	}
 
@@ -35,7 +36,7 @@ input[type=text],
 
 .buttonStart{
   display:flex;
-  background-color: #10a049;
+  background-color: #1053a0;
   color: white;
   height: 30px;
   width: 40px;
@@ -49,7 +50,7 @@ input[type=text],
 
 .buttonMid{
   display:flex;
-  background-color: #10a049;
+  background-color: #1053a0;
   color: white;
   height: 30px;
   width: 40px;
@@ -63,7 +64,7 @@ input[type=text],
 
 .buttonEnd{
   display:flex;
-  background-color: #10a049;
+  background-color: #1053a0;
   color: white;
   height: 30px;
   width: 40px;
@@ -75,18 +76,56 @@ input[type=text],
   box-sizing: border-box;
 }
 
+.buttonTop{
+  display:flex;
+  background-color: #1053a0;
+  color: white;
+  height: 30px;
+  width: 40px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 8px 8px 0px 0px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.buttonBottom{
+  display:flex;
+  background-color: #1053a0;
+  color: white;
+  height: 30px;
+  width: 40px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 0px 0px 8px 8px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
 .buttonStart:hover{
-  background: #37c971;
+  background: #5e9add;
   font-weight: bold;
 }
 
 .buttonMid:hover{
-  background: #37c971;
+  background: #5e9add;
   font-weight: bold;
 }
 
 .buttonEnd:hover{
-  background: #37c971;
+  background: #5e9add;
+  font-weight: bold;
+}
+
+.buttonTop:hover{
+  background: #5e9add;
+  font-weight: bold;
+}
+
+.buttonBottom:hover{
+  background: #5e9add;
   font-weight: bold;
 }
 
@@ -106,7 +145,7 @@ input[type=text],
 
 .tab {
   display: flex;
-  background-color: #748f7e;
+  background-color: #8b9eb4;
   color: white;
   padding: 8px 8px;
   margin-right: 5px;
@@ -121,7 +160,7 @@ input[type=text],
 }
 
 .tab:hover{
-  background: #37c971;
+  background: #5e9add;
   font-weight: bold;
 }
 
@@ -198,6 +237,17 @@ width: 170px ;
 align-items: center;
 }
 
+.singlestatbox{
+display: flex;
+border: 1px solid rgb(255, 0, 0);
+flex-direction: column;
+padding: 3px;
+justify-content:center;
+align-items: center;
+max-width: 80px;
+min-width: 40px;
+}
+
 .box3{
 display: none;
 flex-direction: column;
@@ -234,7 +284,7 @@ justify-content: center;
 .headIco{
   max-width: 50px;
   max-height:50px;
-  border: 1px solid green
+  border: 1px solid blue
 }
 
 .treeBox{
@@ -433,6 +483,7 @@ justify-content: center;
 
   .levelfact{
     width: 153px;
+    flex-direction: column;
   }
 
   .tablebox{
