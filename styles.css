@@ -239,7 +239,7 @@ align-items: center;
 
 .singlestatbox{
 display: flex;
-border: 1px solid rgb(255, 0, 0);
+border: 0px solid rgb(255, 0, 0);
 flex-direction: column;
 padding: 3px;
 justify-content:center;
