@@ -78,11 +78,11 @@ function levelinputcheck(){
         }
     }
   }
-document.getElementById('goosterhp').value=hp;
-document.getElementById('goosteratt').value=att;
-document.getElementById('goosterspd').value=spd;
-document.getElementById('goosterddg').value=ddg;
-document.getElementById('goosterlvl').value=level;
+  document.getElementById('goosterhp').value=hp;
+  document.getElementById('goosteratt').value=att;
+  document.getElementById('goosterspd').value=spd;
+  document.getElementById('goosterddg').value=ddg;
+  document.getElementById('goosterlvl').value=level;
 }
 
 function statadjust(stat){
@@ -136,68 +136,101 @@ function goosterstatcheck(){
   }   
 }
 
-function Battle(gooster, enemy) {
+function Battle(gooster, enemy, log=false) {
   // simulate a gooster battle between gooster and enemy
+  //if log is false, no details logged in BattleLog box
   //return 1 if gooster wins, 0 if enemy wins
   //gooster and enemy are list of stats [hp, att, spd, ddg]
   var battle, dbstrike, fighter1, fighter2, hit, starter;
   starter = 0;
-
+  var battlelogwindow = document.getElementById('battlelog'); 
+  battlelogwindow.style.display = "flex";
+  battlelogwindow.scrollIntoView(true,"smooth");
+  const battlelog = []; // 
+  //determine who goes first
   if (gooster[2] > enemy[2]) {
     starter = 1;
   } else {
     if (gooster[2] < enemy[2]) {
       starter = 2;
     } else {
-      starter = Math.floor(Math.random() * 2 + 1);
+      var init = Math.random()
+      starter = Math.floor(init * 2 + 1);
+      battlelog.push('Initiative roll: ' + (Math.round(init*100)/100) + '(if <0.5, your gooster starts)');
     }
   }
-
+  //assigne identity to each fighter
+  var  fight1;
+  var fight2;
   if (starter == 1) {
     fighter1 = gooster;
+    fight1='Your gooster'
     fighter2 = enemy;
+    fight2='Enemy'
+    battlelog.push('Your Gooster starts');
   } else {
     fighter1 = enemy;
+    fight1='Enemy'
     fighter2 = gooster;
+    fight2='Your gooster'
+    battlelog.push('Enemy starts');
   }
-
+  //setting up the battle
   battle = true;
   winner = 0;
+  //first "free" attack
   fighter2[0] = fighter2[0] - fighter1[1];
-
+  battlelog.push(fight2+' takes ' + fighter1[1] +' damages');
+  //check if opponent dies after the first hit (unlikely)
   if (fighter2[0] < 1) {
     battle = false;
     winner = 1;
   }
-
+  //main battle loop
   while (battle) {
+    //double strike throw and check
     dbstrike = Math.random();
-
     if (dbstrike < (fighter2[2] - fighter1[3]) * 0.05) {
+      //succesful double strike
+      battlelog.push('Double Strike! 9[Speed-dodge]x5%=' +(fighter2[2] - fighter1[3] * 5) + '% ; Double strike throw: ' +Math.round(dbstrike*100,0)+')')
       fighter1[0] = fighter1[0] - 2 * fighter2[1];
+      battlelog.push(fight1+' takes '+ 2*fighter2[1] + 'damages. ' + fight1+' hp: '+fighter1[0]);
     } else {
+      battlelog.push('Normal strike. ([Speed-dodge]x5%=' + (fighter2[2] - fighter1[3] * 5) + '% ; Double strike throw: ' + Math.round(dbstrike * 100, 0) + ')')
+      //check if hit is dodged
       hit = Math.random();
-
       if (hit > fighter1[3] * 0.02) {
+        //hit landed
         fighter1[0] = fighter1[0] - fighter2[1];
+        battlelog.push('Hit! (Dodge throw: ' + Math.round(hit * 100, 0) + '% >'+fight1+ ' dodge x 2%='+fighter1[3]*2+'%');
+        battlelog.push(fight1 + ' takes ' + fighter2[1] + 'damages. ' + fight1 + ' hp: ' + fighter1[0]);
+      } else{
+        //hit missed / dodged
+        battlelog.push('Dodged! (Dodge throw: ' + Math.round(hit * 100, 0) + '<' + fight1 + ' dodge x 2%=' + fighter1[3] * 2+'%}');
       }
     }
-
+    //check if hp is below zero
     if (fighter1[0] < 1) {
       battle = false;
       winner = 2;
     }
-
+    //fighter 2 against fighter 1
     if (battle) {
+      battlelog.push(fight2+"'s turn.")
       dbstrike = Math.random();
-
       if (dbstrike < (fighter1[2] - fighter2[3]) * 0.05) {
+        battlelog.push('Double Strike! ([Speed-dodge]x5%=' + (fighter1[2] - fighter2[3] * 5) + '% ; Double strike throw: ' + Math.round(dbstrike * 100, 0)+'%)');
         fighter2[0] = fighter2[0] - 2 * fighter1[1];
+        battle.log(fight2 + ' takes ' + 2 * fighter1[1] + 'damages. ' + fight2 + ' hp: ' + fighter2[0] );
       } else {
         hit = Math.random();
-
         if (hit > fighter2[3] * 0.02) {
           fighter2[0] = fighter2[0] - fighter1[1];
+          battlelog.push('Hit! (Dodge throw: ' + Math.round(hit * 100, 0) + '% >' + fight2 + ' dodge x 2%=' + fighter2[3] * 0.02+'%)');
+          battlelog.push(fight2 + ' takes ' + fighter1[1] + 'damages. ' + fight2 + ' hp: ' + fighter2[0]);
+        } else{
+          //hit missed / dodged
+          battlelog.push('Dodged! (Dodge throw: ' + Math.round(hit * 100, 0) + '<' + fight2 + ' dodge x 2%=' + fighter2[3] * 2 +'%)');
         }
       }
 
@@ -208,8 +241,38 @@ function Battle(gooster, enemy) {
     }
   }
   if ((starter == 1) && (winner == 1) || (starter == 2) && (winner == 2)) {
+    battlelog.push('Your gooster won!');
+    if (log) { 
+      console.log(battlelog[battlelog.length-1]);
+      let index=0;
+      const intervalld=setInterval(()=>{
+        if(index<battlelog.length) {
+          battlelogwindow.innerHTML += (battlelog[index]);
+          battlelogwindow.innerHTML += '<br/>';
+          battlelogwindow.scrollTop=battlelogwindow.scrollHeight+10;
+          index++;
+        }else {
+          clearInterval(intervalld);
+        }
+      },500); 
+    };
     return 1;
   } else {
+    battlelog.push('Your gooster lost'); 
+    if (log) {
+      console.log(battlelog[battlelog.length-1]);
+      let index = 0;
+      const intervalld = setInterval(() => {
+        if (index < battlelog.length) {
+          battlelogwindow.innerHTML += (battlelog[index]);
+          battlelogwindow.innerHTML += '<br/>';
+          battlelogwindow.scrollTop = battlelogwindow.scrollHeight + 10;
+          index++;
+        } else {
+          clearInterval(intervalld);
+        }
+      },500);
+    };
     return 0;
   }
 }
@@ -291,4 +354,65 @@ function CalcWinRate(){
   document.getElementById('winrate').style.display = "inline";
   console.log("win rate: " + Math.round((wins / b * 1000)) / 10 +"%");
 
+}
+
+function BattleSim() {
+  var i;
+  document.getElementById("battlelog").innerHTML = " ";
+  console.log("Start");
+  i=Battle([100,10,10,10],[100,10,10,20],true);
+  console.log(i);
+}
+
+function openTab1() {
+
+  //specifically show all blcoks relevant to Tab1
+  document.getElementById("tab1").style.background = "#1053a0";
+  document.getElementById("tab1").style.transform = "translatey(0px)";
+
+  document.getElementById("tab2").style.background = "#8b9eb4";
+  document.getElementById("tab2").style.transform = "translatey(+1px)";
+
+  document.getElementById("calculate1").style.display = "inline";
+
+  document.getElementById("enemystat").style.display = "none"; 
+  document.getElementById("battlebox").style.display = "none";
+  document.getElementById("battlelog").style.display = "none";
+  document.getElementById("battle").style.display = "none";
+
+}
+
+function openTab2() {
+  //specifically show all blooks relevant to Tab2
+  document.getElementById("tab1").style.background = "#8b9eb4";
+  document.getElementById("tab1").style.transform = "translatey(+1px)";
+
+  document.getElementById("tab2").style.background = "#1053a0";
+  document.getElementById("tab2").style.transform = "translatey(0px)";
+
+  document.getElementById("enemystat").style.display = "flex";
+  document.getElementById("battlebox").style.display = "flex";
+  //document.getElementById("battlelog").style.display = "flex";
+  document.getElementById("battle").style.display = "inline";
+
+  document.getElementById("calculate1").style.display = "none";
+  document.getElementById("wintext").style.display = "none";
+  document.getElementById("winrate").style.display = "none";
+  
+  
+}
+
+function test(){
+  console.log("Hello");
+  wait(2000).then(() => { console.log('Wake UP'); });
+}
+
+function wait(duration){
+  //wait for "duration" ms
+  return new Promise(resolve => setTimeout(resolve, duration));
+}
+
+function round(number,decimal){
+  // round number to x decimal
+  return Math.round(number * 10 * decimal) / (10 * decimal);
 }
