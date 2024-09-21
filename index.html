@@ -34,7 +34,7 @@
 		<div style="margin-top:12px; display:flex">
 			<div class="tab" id="tab1" onclick="openTab1()"
 				style="background-color:#1053a0; transform: translatey(1px)"> Gooster stat check </div>
-			<div class="tab" id="tab2" onclick="openTab2()">Battle Sim! (#Soon)</div>
+			<div class="tab" id="tab2" onclick="openTab2()">Battle Sim! (#soon)</div>
 		</div>
 
 		<!-- Gooster Level -->
@@ -102,7 +102,63 @@
       </div>
 			<div id="wintext" style="text-align:center; font-weight:bold; width:100%; display:none"> placeholder </div>
 			<div id="winrate" style="text-align:center; font-weight:bold; width:100%; font-size:2em; display:none"> xx% </div>
-    </div>
+
+<!-- Enemy Stat -->
+<div class="box4" id="enemystat" style="display: none; border:0px">
+	<div style="font-weight:bold; width:100%; text-align: center"> Enemy Stat </div>
+	<div class="subbox2" style="width: 100%;">
+		<!-- Health -->
+		<div class="singlestatbox" style="width: 24%;">
+			<div class="tablecell" style="width: 100%;"> Health: </div>
+			<div class="buttonTop" style="text-align:right; width: 80%" onclick="increment('goosterhp')"> + </div>
+			<div style="text-align:centre; width: 80%">
+				<input type="text" id="goosterhp" name="goosterhp" placeholder="Health" value=100 style="border-top: 0px; border-bottom: 0px" onchange="statadjust('goosterhp')"> </div>
+				<div class="buttonBottom" style="text-align: right; width: 80%" onclick="decrement('goosterhp')"> -
+				</div>
+			</div>
+			<!-- Health -->
+			<div class="singlestatbox" style="width: 24%">
+				<div class="tablecell" style="width:100%"> Attack: </div>
+				<div class="buttonTop" style="text-align:right; width: 80%" onclick="increment('goosteratt')"> + </div>
+				<div style="text-align:centre; width: 80%">
+					<input type="text" id="goosteratt" name="goosteratt" placeholder="Attack" value=10 style="border-top: 0px; border-bottom: 0px" onchange="statadjust('goosteratt')"> </div>
+					<div class="buttonBottom" style="text-align: right; width: 80%" onclick="decrement('goosteratt')"> -
+					</div>
+				</div>
+				<!-- Health -->
+				<div class="singlestatbox" style="width: 24%">
+					<div class="tablecell" style="width:100%"> Speed: </div>
+					<div class="buttonTop" style="text-align:right; width: 80%" onclick="increment('goosterspd')"> +
+					</div>
+					<div style="text-align:centre; width: 80%">
+						<input type="text" id="goosterspd" name="goosterspd" placeholder="goosterspd" value=10 style="border-top: 0px; border-bottom: 0px" onchange="statadjust('goosterspd')"> </div>
+						<div class="buttonBottom" style="text-align: right; width: 80%"
+							onclick="decrement('goosterspd')"> - </div>
+					</div>
+					<!-- Health -->
+					<div class="singlestatbox" style="width: 23%">
+						<div class="tablecell" style="width:100%"> Dodge: </div>
+						<div class="buttonTop" style="text-align:right; width: 80%" onclick="increment('goosterddg')"> +
+						</div>
+						<div style="text-align:centre; width: 80%">
+							<input type="text" id="goosterddg" name="goosterddg" placeholder="Dodge" value=10 style="border-top: 0px; border-bottom: 0px" onchange="statadjust('goosterddg')"> </div>
+							<div class="buttonBottom" style="text-align: right; width: 80%"
+								onclick="decrement('goosterddg')"> - </div>
+						</div>
+					</div>
+				<!-- Battle sim -->
+				<div id="wintext" style="text-align:center; font-weight:bold; width:100%; display:none"> placeholder </div>
+				<div id="winrate" style="text-align:center; font-weight:bold; width:100%; font-size:2em; display:none"> xx%
+				</div>
+			</div>
+		</div>
+		<div style="display: flex; width:100%; justify-content: center;" id="battlebox">
+			<button onclick="BattleSim()"; id="battle"; style="width:200px; display:none"> BATTLE! </button>
+		</div>
+		<div class="battledetails" id="battlelog" style="display:none">
+			
+		</div>
+	</div>
 
 	</div>
 </div>																																									
