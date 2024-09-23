@@ -282,7 +282,7 @@ function Battle(gooster, enemy, log = false) {
   var battlelogwindow = document.getElementById('battlelog');
   if(log){
     battlelogwindow.style.display = "inline";
-    //battlelogwindow.scrollIntoView({behaviour:"smooth"});
+    battlelogwindow.scrollIntoView({behaviour:"smooth"});
   }
   const battlelog = []; 
   //determine who goes first
@@ -374,7 +374,6 @@ function Battle(gooster, enemy, log = false) {
           battlelog.push('<b>Dodged!</b> <i> (Dodge throw: ' + Math.round(hit * 100, 0) + ' &lt ' + fight2 + ' dodge x 2%=' + fighter2[3] * 2 + '%)</i>');
         }
       }
-
       if (fighter2[0] < 1) {
         battle = false;
         winner = 1;
@@ -412,7 +411,7 @@ function Battle(gooster, enemy, log = false) {
         } else {
           clearInterval(intervalld);
         }
-      }, 50);
+      }, 500);
     };
     return 0;
   }
@@ -501,6 +500,10 @@ function BattleSim() {
   var i;
   if (!(goosterstatcheck())) {
     alert("Gooster stats does not match level");
+    return false;
+  }
+  if (!(enemystatcheck())){
+    alert("Enemy stats does not match level");
     return false;
   }
   document.getElementById("battlelog").innerHTML = " ";
