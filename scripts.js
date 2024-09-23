@@ -294,7 +294,7 @@ function Battle(gooster, enemy, log = false) {
     } else {
       var init = Math.random()
       starter = Math.floor(init * 2 + 1);
-      battlelog.push('Initiative roll: ' + (Math.round(init * 100) / 100) + '(if <0.5, your gooster starts)');
+      battlelog.push('Initiative roll: ' + (Math.round(init * 100) / 100) + ' (if <0.5, your gooster starts)');
     }
   }
   //assigne identity to each fighter
@@ -394,7 +394,7 @@ function Battle(gooster, enemy, log = false) {
         } else {
           clearInterval(intervalld);
         }
-      }, 50);
+      }, 500);
     };
     return 1;
   } else {
