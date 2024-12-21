@@ -280,11 +280,11 @@ function Battle(gooster, enemy, log = false) {
   var battle, dbstrike, fighter1, fighter2, hit, starter;
   starter = 0;
   var battlelogwindow = document.getElementById('battlelog');
-  if(log){
+  if (log) {
     battlelogwindow.style.display = "inline";
-    battlelogwindow.scrollIntoView({behaviour:"smooth"});
+    battlelogwindow.scrollIntoView({ behaviour: "smooth" });
   }
-  const battlelog = []; 
+  const battlelog = [];
   //determine who goes first
   if (gooster[2] > enemy[2]) {
     starter = 1;
@@ -318,7 +318,7 @@ function Battle(gooster, enemy, log = false) {
   winner = 0;
   //first "free" attack
   fighter2[0] = fighter2[0] - fighter1[1];
-  battlelog.push('<i>'+fight2 + ' takes ' + fighter1[1] + ' damages </i>');
+  battlelog.push('<i>' + fight2 + ' takes ' + fighter1[1] + ' damages </i>');
   //check if opponent dies after the first hit (unlikely)
   if (fighter2[0] < 1) {
     battle = false;
@@ -333,16 +333,16 @@ function Battle(gooster, enemy, log = false) {
       //succesful double strike
       battlelog.push('<b> Double Strike!</b> <i>(Double strike throw: ' + Math.round(dbstrike * 100, 0) + '[Speed-dodge]x5%=' + ((fighter2[2] - fighter1[3]) * 5) + ')</i>');
       fighter1[0] = fighter1[0] - 2 * fighter2[1];
-      battlelog.push('<i>'+fight1 + ' takes ' + 2 * fighter2[1] + ' damages. ' + fight1 + ' </i><b>hp: ' + fighter1[0]+'</b>');
+      battlelog.push('<i>' + fight1 + ' takes ' + 2 * fighter2[1] + ' damages. ' + fight1 + ' </i><b>hp: ' + fighter1[0] + '</b>');
     } else {
-      battlelog.push('<i> Normal strike. (Double strike throw: ' + Math.round(dbstrike * 100, 0)+' &gt [Speed-dodge]x5%=' + ((fighter2[2] - fighter1[3]) * 5) + ')</i>');
+      battlelog.push('<i> Normal strike. (Double strike throw: ' + Math.round(dbstrike * 100, 0) + ' &gt [Speed-dodge]x5%=' + ((fighter2[2] - fighter1[3]) * 5) + ')</i>');
       //check if hit is dodged
       hit = Math.random();
-      if (hit > fighter1[3] * 0.02) {
+      if (hit > (fighter1[3] * 0.02-fighter2[2]*0.01)) {
         //hit landed
         fighter1[0] = fighter1[0] - fighter2[1];
         battlelog.push('<b>Hit!</b> <i>(Dodge throw: ' + Math.round(hit * 100, 0) + '% >' + fight1 + ' dodge x 2%=' + fighter1[3] * 2 + '%)</i>');
-        battlelog.push('<i>'+fight1 + ' takes ' + fighter2[1] + ' damages.</i> <b>' + fight1 + ' hp: ' + fighter1[0]+'<b>');
+        battlelog.push('<i>' + fight1 + ' takes ' + fighter2[1] + ' damages.</i> <b>' + fight1 + ' hp: ' + fighter1[0] + '<b>');
       } else {
         //hit missed / dodged
         battlelog.push('<b>Dodged!</b> <i>(Dodge throw: ' + Math.round(hit * 100, 0) + ' &lt ' + fight1 + ' dodge x 2%=' + fighter1[3] * 2 + '%)</i>');
@@ -355,20 +355,20 @@ function Battle(gooster, enemy, log = false) {
     }
     //fighter 1 against fighter 2
     if (battle) {
-      battlelog.push('<br/><b>'+fight1 + "'s turn.</b>")
+      battlelog.push('<br/><b>' + fight1 + "'s turn.</b>")
       dbstrike = Math.random();
       if (dbstrike < (fighter1[2] - fighter2[3]) * 0.05) {
         battlelog.push('<b>Double Strike!</b> <i>([Speed-dodge]x5%=' + ((fighter1[2] - fighter2[3]) * 5) + '% ; Double strike throw: ' + Math.round(dbstrike * 100, 0) + '%)</i>');
         fighter2[0] = fighter2[0] - 2 * fighter1[1];
-        battlelog.push(fight2 + ' takes ' + 2 * fighter1[1] + ' damages. <b>' + fight2 + ' hp: ' + fighter2[0]+'</b>');
+        battlelog.push(fight2 + ' takes ' + 2 * fighter1[1] + ' damages. <b>' + fight2 + ' hp: ' + fighter2[0] + '</b>');
       } else {
         battlelog.push('<i> Normal strike. (Double strike throw: ' + Math.round(dbstrike * 100, 0) + ' &gt [Speed-dodge]x5%=' + ((fighter1[2] - fighter2[3]) * 5) + ')</i>');
-        console.log(fighter1[2]+'; '+fighter2[3]);
+        console.log(fighter1[2] + '; ' + fighter2[3]);
         hit = Math.random();
-        if (hit > fighter2[3] * 0.02) {
+        if (hit > (fighter2[3] * 0.02 - fighter1[2] * 0.01)) {
           fighter2[0] = fighter2[0] - fighter1[1];
           battlelog.push('<b>Hit!</b> <i> (Dodge throw: ' + Math.round(hit * 100, 0) + '% >' + fight2 + ' dodge x 2%=' + fighter2[3] * 2 + '%)</i>');
-          battlelog.push(fight2 + ' takes ' + fighter1[1] + ' damages. <b>' + fight2 + ' hp: ' + fighter2[0]+'</b>');
+          battlelog.push(fight2 + ' takes ' + fighter1[1] + ' damages. <b>' + fight2 + ' hp: ' + fighter2[0] + '</b>');
         } else {
           //hit missed / dodged
           battlelog.push('<b>Dodged!</b> <i> (Dodge throw: ' + Math.round(hit * 100, 0) + ' &lt ' + fight2 + ' dodge x 2%=' + fighter2[3] * 2 + '%)</i>');
@@ -502,7 +502,7 @@ function BattleSim() {
     alert("Gooster stats does not match level");
     return false;
   }
-  if (!(enemystatcheck())){
+  if (!(enemystatcheck())) {
     alert("Enemy stats does not match level");
     return false;
   }
@@ -518,7 +518,7 @@ function BattleSim() {
   ddg = Number(document.getElementById('enemyddg').value);
   enemy = [hp, att, spd, ddg];
   console.log("Start");
-  i = Battle(gooster,enemy, true);
+  i = Battle(gooster, enemy, true);
   console.log(i);
 }
 
