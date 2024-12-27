@@ -523,7 +523,7 @@ function BattleSim() {
     enemy[0] = enhp;
     win = win + Battle(gooster, enemy, false);
   }
-  document.getElementById('winratesim').innerHTML = 'Win Rate: '+(Math.round((win/100*100))/100) + '%';
+  document.getElementById('winratesim').innerHTML = 'Win Rate: '+(Math.round((win/10000*100*100))/100) + '%';
   document.getElementById('winratesim').style.display = "flex";
   document.getElementById('example').style.display = "flex";
   console.log(win);
