@@ -341,11 +341,11 @@ function Battle(gooster, enemy, log = false) {
       if (hit > (fighter1[3] * 0.02-fighter2[2]*0.01)) {
         //hit landed
         fighter1[0] = fighter1[0] - fighter2[1];
-        battlelog.push('<b>Hit!</b> <i>(Dodge throw: ' + Math.round(hit * 100, 0) + '% >' + fight1 + ' dodge x 2%=' + fighter1[3] * 2 + '%)</i>');
+        battlelog.push('<b>Hit!</b> <i>(Dodge throw: ' + Math.round(hit * 100, 0) + '% >' + fight1 + ' dodge x 2%=' + (fighter1[3] * 2 - fighter2[2] * 1) + '%)</i>');
         battlelog.push('<i>' + fight1 + ' takes ' + fighter2[1] + ' damages.</i> <b>' + fight1 + ' hp: ' + fighter1[0] + '<b>');
       } else {
         //hit missed / dodged
-        battlelog.push('<b>Dodged!</b> <i>(Dodge throw: ' + Math.round(hit * 100, 0) + ' &lt ' + fight1 + ' dodge x 2%=' + fighter1[3] * 2 + '%)</i>');
+        battlelog.push('<b>Dodged!</b> <i>(Dodge throw: ' + Math.round(hit * 100, 0) + ' &lt ' + fight1 + ' dodge x 2%=' + (fighter1[3] * 2 - fighter2[2] * 1) + '%)</i>');
       }
     }
     //check if hp is below zero
@@ -367,11 +367,11 @@ function Battle(gooster, enemy, log = false) {
         hit = Math.random();
         if (hit > (fighter2[3] * 0.02 - fighter1[2] * 0.01)) {
           fighter2[0] = fighter2[0] - fighter1[1];
-          battlelog.push('<b>Hit!</b> <i> (Dodge throw: ' + Math.round(hit * 100, 0) + '% >' + fight2 + ' dodge x 2%=' + fighter2[3] * 2 + '%)</i>');
+          battlelog.push('<b>Hit!</b> <i> (Dodge throw: ' + Math.round(hit * 100, 0) + '% >' + fight2 + ' dodge x 2% - speed x 1%=' + (fighter2[3] * 2 - fighter1[2] * 1) + '%)</i>');
           battlelog.push(fight2 + ' takes ' + fighter1[1] + ' damages. <b>' + fight2 + ' hp: ' + fighter2[0] + '</b>');
         } else {
           //hit missed / dodged
-          battlelog.push('<b>Dodged!</b> <i> (Dodge throw: ' + Math.round(hit * 100, 0) + ' &lt ' + fight2 + ' dodge x 2%=' + fighter2[3] * 2 + '%)</i>');
+          battlelog.push('<b>Dodged!</b> <i> (Dodge throw: ' + Math.round(hit * 100, 0) + ' &lt ' + fight2 + ' dodge x 2% - speed x 1%=' + (fighter2[3] * 2 - fighter1[2] * 1) + '%)</i>');
         }
       }
       if (fighter2[0] < 1) {
