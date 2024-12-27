@@ -27,9 +27,11 @@
 	<!-- Header -->
 	<div style="display:flex; width:100%; justify-content:center; align-items: center ">
 		<img src="https://raw.githubusercontent.com/saprolord/GoosterSim/main/Images/Blob.png" class="headIco" style="border: 0px" alt="ico">
-		<div style="text-align: center; margin-left: 0.5em; margin-right: 0.5em; font-family: Verdana; font-size: 1.1em; -webkit-text-stroke-width: 0.5px; -webkit-text-stroke-color: white; ">
+		<div
+			style="text-align: center; margin-left: 0.5em; margin-right: 0.5em; font-family: Verdana; font-size: 1.1em; -webkit-text-stroke-width: 0.5px; -webkit-text-stroke-color: white; ">
 			<b>GOOSTER BATTLE SIMULATOR </b>
-		</div> <img src="https://raw.githubusercontent.com/saprolord/GoosterSim/main/Images/Blob.png" class="headIco" style="border: 0px" alt="ico"> </div>
+		</div>
+		<img src="https://raw.githubusercontent.com/saprolord/GoosterSim/main/Images/Blob.png" class="headIco" style="border: 0px" alt="ico"> </div>
 		<!-- Gooster Stat check -->
 		<div style="margin-top:12px; display:flex">
 			<div class="tab" id="tab1" onclick="openTab1()"
@@ -41,126 +43,164 @@
 		<div class="mainbox" id="mainbox1">
 			<div class="leftContainer">
 				<div class="tabBox" id="inputBox1" style="width:100%">
-          <div style="text-align:center; font-weight:bold; width:100%"> Your Gooster Level</div>
-          <div style="display: flex; justify-content:center; align-items:center; width:100%; height: 2em">
-            <div class="buttonStart" style="display: flex; text-align:right; width: 25px; height: 36px" onclick="decrementlevel('goosterlvl')"> - </div>
-            <div style="text-align:right; width: 50px">  <input type="text" id="goosterlvl" name="goosterlvl" placeholder="Level" value=1 style="border-left: 0px; border-right: 0px " onchange="levelinputcheck()"> </div>
-            <div class="buttonEnd" style="align-items:center; width: 25px; height: 36px" onclick="incrementlevel('goosterlvl')"> + </div>
-          </div>
-        </div>
-			<!-- Gooster Stat -->
-			<div class="box4" id="goosterstat" style="display: yes">
-				<div style="font-weight:bold; width:100%; text-align: center"> Your Gooster Stats </div>
-				<div class="subbox2" style="width: 100%;">
-					<!-- Health -->
-					<div class="singlestatbox" style="width: 24%;">
-						<div class="tablecell" style="width: 100%;"> Health: </div>
-						<div class="buttonTop" style="text-align:right; width: 80%" onclick="increment('goosterhp')"> + </div>
-						<div style="text-align:centre; width: 80%">
-							<input type="text" id="goosterhp" name="goosterhp" placeholder="Health" value=100 style="border-top: 0px; border-bottom: 0px" onchange="statadjust('goosterhp')"> </div>
-							<div class="buttonBottom" style="text-align: right; width: 80%" onclick="decrement('goosterhp')"> - </div>
+					<div style="text-align:center; font-weight:bold; width:100%"> Your Gooster Level</div>
+					<div style="display: flex; justify-content:center; align-items:center; width:100%; height: 2em">
+						<div class="buttonStart" style="display: flex; text-align:right; width: 25px; height: 36px"
+							onclick="decrementlevel('goosterlvl')"> - </div>
+						<div style="text-align:right; width: 50px">
+							<input type="text" id="goosterlvl" name="goosterlvl" placeholder="Level" value=1 style="border-left: 0px; border-right: 0px " onchange="levelinputcheck()"> </div>
+							<div class="buttonEnd" style="align-items:center; width: 25px; height: 36px"
+								onclick="incrementlevel('goosterlvl')"> + </div>
 						</div>
-					<!-- Attack -->
-					<div class="singlestatbox" style="width: 24%">
-						<div class="tablecell" style="width:100%"> Attack: </div>
-						<div class="buttonTop" style="text-align:right; width: 80%" onclick="increment('goosteratt')"> + </div>
-						<div style="text-align:centre; width: 80%">
-							<input type="text" id="goosteratt" name="goosteratt" placeholder="Attack" value=10 style="border-top: 0px; border-bottom: 0px" onchange="statadjust('goosteratt')"> </div>
-							<div class="buttonBottom" style="text-align: right; width: 80%" onclick="decrement('goosteratt')"> - </div>
-						</div>
-					<!-- Speed -->
-					<div class="singlestatbox" style="width: 24%">
-						<div class="tablecell" style="width:100%"> Speed: </div>
-						<div class="buttonTop" style="text-align:right; width: 80%" onclick="increment('goosterspd')" > + </div>
-						<div style="text-align:centre; width: 80%">
-							<input type="text" id="goosterspd" name="goosterspd" placeholder="goosterspd" value=10 style="border-top: 0px; border-bottom: 0px" onchange="statadjust('goosterspd')"> </div>
-							<div class="buttonBottom" style="text-align: right; width: 80%" onclick="decrement('goosterspd')"> - </div>
-						</div>
-					<!-- Dodge -->
-					<div class="singlestatbox" style="width: 23%">
-						<div class="tablecell" style="width:100%"> Dodge: </div>
-						<div class="buttonTop" style="text-align:right; width: 80%" onclick="increment('goosterddg')"> + </div>
-						<div style="text-align:centre; width: 80%">
-							<input type="text" id="goosterddg" name="goosterddg" placeholder="Dodge" value=10 style="border-top: 0px; border-bottom: 0px" onchange="statadjust('goosterddg')"> </div>
-							<div class="buttonBottom" style="text-align: right; width: 80%" onclick="decrement('goosterddg')"> - </div>
-						</div>
-				</div>
-			</div>
-		</div>
-		<!-- Enemy level -->
-		<div class="tabBox" id="inputBox1" style="">
-			<div style="text-align:center; font-weight:bold; width:100%"> Enemy Level Class</div>
-			<div style="display: flex; justify-content:center; align-items:center; width:100%; height: 2em">
-				<div class="buttonStart" style="display: flex; text-align:right; width: 25px; height: 36px" onclick="decrementenemylevel('enemylvl')"> - </div>
-        <div style="text-align:right; width: 50px">
-        <input type="text" id="enemylvl" name="enemylevel" placeholder="Level" value=1 style="border-left: 0px; border-right: 0px " > </div>
-        <div class="buttonEnd" style="align-items:center; width: 25px; height: 36px" onclick="incrementlevel('enemylvl')"> + </div>
-      </div>
-      <!-- Win Rate -->
-      <div style="display: flex; width:100%; justify-content: center">
-        <button onclick="CalcWinRate()"; id="calculate1"; style="width:200px"> CALCULATE WIN RATE </button>
-      </div>
-			<div id="wintext" style="text-align:center; font-weight:bold; width:100%; display:none"> placeholder </div>
-			<div id="winrate" style="text-align:center; font-weight:bold; width:100%; font-size:2em; display:none"> xx% </div>
+					</div>
+					<!-- Gooster Stat -->
+					<div class="box4" id="goosterstat" style="display: yes">
+						<div style="font-weight:bold; width:100%; text-align: center"> Your Gooster Stats </div>
+						<div class="subbox2" style="width: 100%;">
+							<!-- Health -->
+							<div class="singlestatbox" style="width: 24%;">
+								<div class="tablecell" style="width: 100%;"> Health: </div>
+								<div class="buttonTop" style="text-align:right; width: 80%"
+									onclick="increment('goosterhp')"> + </div>
+								<div style="text-align:centre; width: 80%">
+									<input type="text" id="goosterhp" name="goosterhp" placeholder="Health" value=100 style="border-top: 0px; border-bottom: 0px" onchange="statadjust('goosterhp')"> </div>
+									<div class="buttonBottom" style="text-align: right; width: 80%"
+										onclick="decrement('goosterhp')"> - </div>
+								</div>
+								<!-- Attack -->
+								<div class="singlestatbox" style="width: 24%">
+									<div class="tablecell" style="width:100%"> Attack: </div>
+									<div class="buttonTop" style="text-align:right; width: 80%"
+										onclick="increment('goosteratt')"> + </div>
+									<div style="text-align:centre; width: 80%">
+										<input type="text" id="goosteratt" name="goosteratt" placeholder="Attack" value=10 style="border-top: 0px; border-bottom: 0px" onchange="statadjust('goosteratt')"> </div>
+										<div class="buttonBottom" style="text-align: right; width: 80%"
+											onclick="decrement('goosteratt')"> - </div>
+									</div>
+									<!-- Speed -->
+									<div class="singlestatbox" style="width: 24%">
+										<div class="tablecell" style="width:100%"> Speed: </div>
+										<div class="buttonTop" style="text-align:right; width: 80%"
+											onclick="increment('goosterspd')"> + </div>
+										<div style="text-align:centre; width: 80%">
+											<input type="text" id="goosterspd" name="goosterspd" placeholder="goosterspd" value=10 style="border-top: 0px; border-bottom: 0px" onchange="statadjust('goosterspd')"> </div>
+											<div class="buttonBottom" style="text-align: right; width: 80%"
+												onclick="decrement('goosterspd')"> - </div>
+										</div>
+										<!-- Dodge -->
+										<div class="singlestatbox" style="width: 23%">
+											<div class="tablecell" style="width:100%"> Dodge: </div>
+											<div class="buttonTop" style="text-align:right; width: 80%"
+												onclick="increment('goosterddg')"> + </div>
+											<div style="text-align:centre; width: 80%">
+												<input type="text" id="goosterddg" name="goosterddg" placeholder="Dodge" value=10 style="border-top: 0px; border-bottom: 0px" onchange="statadjust('goosterddg')"> </div>
+												<div class="buttonBottom" style="text-align: right; width: 80%"
+													onclick="decrement('goosterddg')"> - </div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- Enemy level -->
+								<div class="tabBox" id="inputBox1" style="">
+									<div style="text-align:center; font-weight:bold; width:100%"> Enemy Level Class
+									</div>
+									<div
+										style="display: flex; justify-content:center; align-items:center; width:100%; height: 2em">
+										<div class="buttonStart"
+											style="display: flex; text-align:right; width: 25px; height: 36px"
+											onclick="decrementenemylevel('enemylvl')"> - </div>
+										<div style="text-align:right; width: 50px">
+											<input type="text" id="enemylvl" name="enemylevel" placeholder="Level" value=1 style="border-left: 0px; border-right: 0px " > </div>
+											<div class="buttonEnd" style="align-items:center; width: 25px; height: 36px"
+												onclick="incrementlevel('enemylvl')"> + </div>
+										</div>
+										<!-- Win Rate -->
+										<div style="display: flex; width:100%; justify-content: center">
+											<button onclick="CalcWinRate()"; id="calculate1"; style="width:200px"> CALCULATE WIN RATE </button>
+										</div>
+										<div id="wintext"
+											style="text-align:center; font-weight:bold; width:100%; display:none">
+											placeholder </div>
+										<div id="winrate"
+											style="text-align:center; font-weight:bold; width:100%; font-size:2em; display:none">
+											xx% </div>
 
-<!-- Enemy Stat -->
-<div class="box4" id="enemystat" style="display: none; border:0px">
-	<div style="font-weight:bold; width:100%; text-align: center"> Enemy Stat </div>
-	<div class="subbox2" style="width: 100%;">
-		<!-- Health -->
-		<div class="singlestatbox" style="width: 24%;">
-			<div class="tablecell" style="width: 100%;"> Health: </div>
-			<div class="buttonTop" style="text-align:right; width: 80%" onclick="incrementenemy('enemyhp')"> + </div>
-			<div style="text-align:centre; width: 80%">
-				<input type="text" id="enemyhp" name="enemyhp" placeholder="Health" value=100 style="border-top: 0px; border-bottom: 0px" onchange="enemystatadjust('enemyhp')"> </div>
-				<div class="buttonBottom" style="text-align: right; width: 80%" onclick="decrementenemy('enemyhp')"> -
-				</div>
-			</div>
-			<!-- Attack -->
-			<div class="singlestatbox" style="width: 24%">
-				<div class="tablecell" style="width:100%"> Attack: </div>
-				<div class="buttonTop" style="text-align:right; width: 80%" onclick="incrementenemy('enemyatt')"> + </div>
-				<div style="text-align:centre; width: 80%">
-					<input type="text" id="enemyatt" name="enemyatt" placeholder="Attack" value=10 style="border-top: 0px; border-bottom: 0px" onchange="enemystatadjust('enemyatt')"> </div>
-					<div class="buttonBottom" style="text-align: right; width: 80%" onclick="decrementenemy('enemyatt')"> -
-					</div>
-				</div>
-				<!-- Speed -->
-				<div class="singlestatbox" style="width: 24%">
-					<div class="tablecell" style="width:100%"> Speed: </div>
-					<div class="buttonTop" style="text-align:right; width: 80%" onclick="incrementenemy('enemyspd')"> +
-					</div>
-					<div style="text-align:centre; width: 80%">
-						<input type="text" id="enemyspd" name="enemyspd" placeholder="enemyspd" value=10 style="border-top: 0px; border-bottom: 0px" onchange="enemystatadjust('enemyspd')"> </div>
-						<div class="buttonBottom" style="text-align: right; width: 80%"
-							onclick="decrementenemy('enemyspd')"> - </div>
-					</div>
-					<!-- Dodge -->
-					<div class="singlestatbox" style="width: 23%">
-						<div class="tablecell" style="width:100%"> Dodge: </div>
-						<div class="buttonTop" style="text-align:right; width: 80%" onclick="incrementenemy('enemyddg')"> +
-						</div>
-						<div style="text-align:centre; width: 80%">
-							<input type="text" id="enemyddg" name="enemyddg" placeholder="Dodge" value=10 style="border-top: 0px; border-bottom: 0px" onchange="enemystatadjust('enemyddg')"> </div>
-							<div class="buttonBottom" style="text-align: right; width: 80%"
-								onclick="decrementenemy('enemyddg')"> - </div>
-						</div>
-					</div>
-				<!-- Battle sim -->
-				<div id="wintext" style="text-align:center; font-weight:bold; width:100%; display:none"> placeholder </div>
-				<div id="winrate" style="text-align:center; font-weight:bold; width:100%; font-size:2em; display:none"> xx%
-				</div>
-			</div>
-		</div>
-		<div style="display: flex; width:100%; justify-content: center;" id="battlebox">
-			<button onclick="BattleSim()"; id="battle"; style="width:200px; display:none"> BATTLE! </button>
-		</div>
-		<div class="battledetails" id="battlelog" style="display:none">
-		</div>
-	</div>
+										<!-- Enemy Stat -->
+										<div class="box4" id="enemystat" style="display: none; border:0px">
+											<div style="font-weight:bold; width:100%; text-align: center"> Enemy Stat
+											</div>
+											<div class="subbox2" style="width: 100%;">
+												<!-- Health -->
+												<div class="singlestatbox" style="width: 24%;">
+													<div class="tablecell" style="width: 100%;"> Health: </div>
+													<div class="buttonTop" style="text-align:right; width: 80%"
+														onclick="incrementenemy('enemyhp')"> + </div>
+													<div style="text-align:centre; width: 80%">
+														<input type="text" id="enemyhp" name="enemyhp" placeholder="Health" value=100 style="border-top: 0px; border-bottom: 0px" onchange="enemystatadjust('enemyhp')"> </div>
+														<div class="buttonBottom" style="text-align: right; width: 80%"
+															onclick="decrementenemy('enemyhp')"> -
+														</div>
+													</div>
+													<!-- Attack -->
+													<div class="singlestatbox" style="width: 24%">
+														<div class="tablecell" style="width:100%"> Attack: </div>
+														<div class="buttonTop" style="text-align:right; width: 80%"
+															onclick="incrementenemy('enemyatt')"> + </div>
+														<div style="text-align:centre; width: 80%">
+															<input type="text" id="enemyatt" name="enemyatt" placeholder="Attack" value=10 style="border-top: 0px; border-bottom: 0px" onchange="enemystatadjust('enemyatt')"> </div>
+															<div class="buttonBottom"
+																style="text-align: right; width: 80%"
+																onclick="decrementenemy('enemyatt')"> -
+															</div>
+														</div>
+														<!-- Speed -->
+														<div class="singlestatbox" style="width: 24%">
+															<div class="tablecell" style="width:100%"> Speed: </div>
+															<div class="buttonTop" style="text-align:right; width: 80%"
+																onclick="incrementenemy('enemyspd')"> +
+															</div>
+															<div style="text-align:centre; width: 80%">
+																<input type="text" id="enemyspd" name="enemyspd" placeholder="enemyspd" value=10 style="border-top: 0px; border-bottom: 0px" onchange="enemystatadjust('enemyspd')"> </div>
+																<div class="buttonBottom"
+																	style="text-align: right; width: 80%"
+																	onclick="decrementenemy('enemyspd')"> - </div>
+															</div>
+															<!-- Dodge -->
+															<div class="singlestatbox" style="width: 23%">
+																<div class="tablecell" style="width:100%"> Dodge: </div>
+																<div class="buttonTop"
+																	style="text-align:right; width: 80%"
+																	onclick="incrementenemy('enemyddg')"> +
+																</div>
+																<div style="text-align:centre; width: 80%">
+																	<input type="text" id="enemyddg" name="enemyddg" placeholder="Dodge" value=10 style="border-top: 0px; border-bottom: 0px" onchange="enemystatadjust('enemyddg')"> </div>
+																	<div class="buttonBottom"
+																		style="text-align: right; width: 80%"
+																		onclick="decrementenemy('enemyddg')"> - </div>
+																</div>
+															</div>
+															<!-- Battle sim -->
+															<div id="wintext"
+																style="text-align:center; font-weight:bold; width:100%; display:none">
+																placeholder </div>
+															<div id="winrate"
+																style="text-align:center; font-weight:bold; width:100%; font-size:2em; display:none">
+																xx%
+															</div>
+														</div>
+													</div>
+													<div style="display: flex; width:100%; justify-content: center;"
+														id="battlebox">
+														<button onclick="BattleSim()"; id="battle"; style="width:200px; display:none"> BATTLE! </button>
+													</div>
+                          <div style="text-align:center; justify-content: center; font-weight:bold; width:100%; font-size:2em; display:none" id="winratesim"> Win Rate: xx% </div>
+                          <div style="display:none" id=example> Live example battle sample:</div>
+													<div class="battledetails" id="battlelog" style="display:none">
+													</div>
+												</div>
 
-	</div>
-</div>																																									
+											</div>
+										</div>
 
 </body>
 
