@@ -518,12 +518,12 @@ function BattleSim() {
   let enemy = [enhp, enatt, enspd, enddg];
   console.log("Start");
   let win=0
-  for (let k = 0; k < 1000; k += 1) {
+  for (let k = 0; k < 10000; k += 1) {
     gooster[0] = hp;
     enemy[0] = enhp;
     win = win + Battle(gooster, enemy, false);
   }
-  document.getElementById('winratesim').innerHTML = 'Win Rate: '+(Math.round((win/1000*100))/100) + '%';
+  document.getElementById('winratesim').innerHTML = 'Win Rate: '+(Math.round((win/100*100))/100) + '%';
   document.getElementById('winratesim').style.display = "flex";
   document.getElementById('example').style.display = "flex";
   console.log(win);
