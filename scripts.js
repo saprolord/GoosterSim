@@ -363,7 +363,6 @@ function Battle(gooster, enemy, log = false) {
         battlelog.push(fight2 + ' takes ' + 2 * fighter1[1] + ' damages. <b>' + fight2 + ' hp: ' + fighter2[0] + '</b>');
       } else {
         battlelog.push('<i> Normal strike. (Double strike throw: ' + Math.round(dbstrike * 100, 0) + ' &gt [Speed-dodge]x5%=' + ((fighter1[2] - fighter2[3]) * 5) + ')</i>');
-        console.log(fighter1[2] + '; ' + fighter2[3]);
         hit = Math.random();
         if (hit > (fighter2[3] * 0.02 - fighter1[2] * 0.01)) {
           fighter2[0] = fighter2[0] - fighter1[1];
@@ -507,17 +506,29 @@ function BattleSim() {
     return false;
   }
   document.getElementById("battlelog").innerHTML = " ";
-  var hp = Number(document.getElementById('goosterhp').value);
-  var att = Number(document.getElementById('goosteratt').value);
-  var spd = Number(document.getElementById('goosterspd').value);
-  var ddg = Number(document.getElementById('goosterddg').value);
-  var gooster = [hp, att, spd, ddg];
-  hp = Number(document.getElementById('enemyhp').value);
-  att = Number(document.getElementById('enemyatt').value);
-  spd = Number(document.getElementById('enemyspd').value);
-  ddg = Number(document.getElementById('enemyddg').value);
-  enemy = [hp, att, spd, ddg];
+  let hp = Number(document.getElementById('goosterhp').value);
+  let att = Number(document.getElementById('goosteratt').value);
+  let spd = Number(document.getElementById('goosterspd').value);
+  let ddg = Number(document.getElementById('goosterddg').value);
+  let gooster = [hp, att, spd, ddg];
+  let enhp = Number(document.getElementById('enemyhp').value);
+  let enatt = Number(document.getElementById('enemyatt').value);
+  let enspd = Number(document.getElementById('enemyspd').value);
+  let enddg = Number(document.getElementById('enemyddg').value);
+  let enemy = [enhp, enatt, enspd, enddg];
   console.log("Start");
+  let win=0
+  for (let k = 0; k < 1000; k += 1) {
+    gooster[0] = hp;
+    enemy[0] = enhp;
+    win = win + Battle(gooster, enemy, false);
+  }
+  document.getElementById('winratesim').innerHTML = 'Win Rate: '+(Math.round((win/1000*100))/100) + '%';
+  document.getElementById('winratesim').style.display = "flex";
+  document.getElementById('example').style.display = "flex";
+  console.log(win);
+  gooster[0] = hp;
+  enemy[0] = enhp;
   i = Battle(gooster, enemy, true);
   console.log(i);
 }
@@ -537,6 +548,8 @@ function openTab1() {
   document.getElementById("battlebox").style.display = "none";
   document.getElementById("battlelog").style.display = "none";
   document.getElementById("battle").style.display = "none";
+  document.getElementById("winratesim").style.display = "none";
+  document.getElementById("example").style.display = "none";
 
 }
 
@@ -556,6 +569,8 @@ function openTab2() {
   document.getElementById("calculate1").style.display = "none";
   document.getElementById("wintext").style.display = "none";
   document.getElementById("winrate").style.display = "none";
+  document.getElementById("winratesim").style.display = "none";
+  document.getElementById("example").style.display = "none";
 
 
 }
